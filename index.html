@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ShopEase - Home</title>
+    <title>ShopEase</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" type="text/css" />
@@ -45,11 +45,15 @@
             background-color: #3b82f6; /* Tailwind blue-600 */
             color: white;
         }
-        /* Hidden class for sections */
-        .page-section.hidden {
-            display: none;
+
+        /* Styles for page management */
+        .main-page-section {
+            display: none; /* Hide all pages by default */
         }
-        .checkout-step.hidden {
+        .main-page-section.active-page {
+            display: block; /* Show active page */
+        }
+        .checkout-step.hidden, .payment-method-section.hidden, #billing-address-fields.hidden {
             display: none;
         }
     </style>
@@ -64,11 +68,11 @@
             </div>
 
             <nav class="hidden md:flex space-x-6 items-center text-gray-700 font-medium">
-                <a href="#home-section" class="hover:text-blue-600 nav-link" data-target-section="home-section">Home</a>
-                <a href="#categories" class="hover:text-blue-600 nav-link" data-target-section="home-section">Categories</a>
-                <a href="#shop" class="hover:text-blue-600 nav-link" data-target-section="home-section">Features</a>
-                <a href="#testimonials" class="hover:text-blue-600 nav-link" data-target-section="home-section">Testimonials</a>
-                <a href="#footer" class="hover:text-blue-600 nav-link" data-target-section="home-section">Contact</a>
+                <a href="#" data-page="home-page" class="nav-link hover:text-blue-600">Home</a>
+                <a href="#categories" class="nav-link hover:text-blue-600">Categories</a>
+                <a href="#shop" class="nav-link hover:text-blue-600">Features</a>
+                <a href="#testimonials" class="nav-link hover:text-blue-600">Testimonials</a>
+                <a href="#footer" class="nav-link hover:text-blue-600">Contact</a>
 
                 <div class="flex space-x-4 ml-4 text-xl">
                     <a href="#" class="hover:text-blue-600"><i class="fas fa-search"></i></a>
@@ -86,11 +90,11 @@
         </div>
 
         <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 space-y-4 text-gray-700 font-medium">
-            <a href="#home-section" class="block hover:text-blue-600 nav-link" data-target-section="home-section">Home</a>
-            <a href="#categories" class="block hover:text-blue-600 nav-link" data-target-section="home-section">Categories</a>
-            <a href="#shop" class="block hover:text-blue-600 nav-link" data-target-section="home-section">Features</a>
-            <a href="#testimonials" class="block hover:text-blue-600 nav-link" data-target-section="home-section">Testimonials</a>
-            <a href="#footer" class="block hover:text-blue-600 nav-link" data-target-section="home-section">Contact</a>
+            <a href="#" data-page="home-page" class="nav-link block hover:text-blue-600">Home</a>
+            <a href="#categories" class="nav-link block hover:text-blue-600">Categories</a>
+            <a href="#shop" class="nav-link block hover:text-blue-600">Features</a>
+            <a href="#testimonials" class="nav-link block hover:text-blue-600">Testimonials</a>
+            <a href="#footer" class="nav-link block hover:text-blue-600">Contact</a>
             
             <div class="flex space-x-6 text-xl pt-2">
                 <a href="#" class="hover:text-blue-600"><i class="fas fa-search"></i></a>
@@ -103,7 +107,7 @@
         </div>
     </header>
 
-    <div id="home-section" class="page-section">
+    <div id="home-page" class="main-page-section active-page">
         <section 
             class="relative h-screen w-full bg-cover bg-center flex items-center justify-center text-white" 
             style="background-image: url('https://media.istockphoto.com/id/1214561965/photo/young-man-in-shopping-looking-for-presents-consumerism-fashion-lifestyle-concept.jpg?s=612x612&w=0&k=20&c=G1n6f4oQ6om156yTJgdKiQ8_Mn6KqtKAHHXDY0-4f3Q='); background-position: top;"
@@ -126,7 +130,7 @@
                                 <h3 class="text-xl font-semibold mb-2">Men's Collection</h3>
                                 <p class="text-gray-600 mb-4">Trendy and classic outfits for every occasion.</p>
                             </div>
-                            <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-5 rounded-full filter-btn" data-category="men">Shop Now</a>
+                            <button class="inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-5 rounded-full" data-page="home-page" data-filter="men">Shop Now</button>
                         </div>
                     </div>
 
@@ -137,7 +141,7 @@
                                 <h3 class="text-xl font-semibold mb-2">Women's Collection</h3>
                                 <p class="text-gray-600 mb-4">Elegant styles and new fashion trends for women.</p>
                             </div>
-                            <a href="#" class="inline-block bg-pink-500 hover:bg-pink-600 text-white py-2 px-5 rounded-full filter-btn" data-category="women">Shop Now</a>
+                            <button class="inline-block bg-pink-500 hover:bg-pink-600 text-white py-2 px-5 rounded-full" data-page="home-page" data-filter="women">Shop Now</button>
                         </div>
                     </div>
 
@@ -148,7 +152,7 @@
                                 <h3 class="text-xl font-semibold mb-2">Kids' Collection</h3>
                                 <p class="text-gray-600 mb-4">Colorful and comfy outfits for little stars.</p>
                             </div>
-                            <a href="#" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-5 rounded-full filter-btn" data-category="kids">Shop Now</a>
+                            <button class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-5 rounded-full" data-page="home-page" data-filter="kids">Shop Now</button>
                         </div>
                     </div>
                 </div>
@@ -313,7 +317,6 @@
             </div>
         </section>
 
-        ---
         <section class="py-16 px-4 bg-gray-50" id="testimonials">
             <div class="max-w-7xl mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-12">What Our Customers Say</h2>
@@ -353,7 +356,6 @@
                 </div>
             </div>
         </section>
-        ---
 
         <section class="bg-blue-600 text-white py-16 px-4 text-center">
             <div class="max-w-4xl mx-auto">
@@ -374,7 +376,9 @@
                 </form>
             </div>
         </section>
-    </div> <div id="checkout-section" class="page-section hidden">
+    </div>
+
+    <div id="checkout-page" class="main-page-section">
         <main class="max-w-7xl mx-auto py-12 px-4">
             <h1 class="text-4xl font-bold text-center mb-8">Checkout</h1>
 
@@ -390,23 +394,23 @@
                         <h2 class="text-2xl font-semibold mb-6">1. Shipping Information</h2>
                         <form id="shipping-form" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <input type="text" id="shipping-first-name" placeholder="First Name" class="input input-bordered w-full" required />
-                                <input type="text" id="shipping-last-name" placeholder="Last Name" class="input input-bordered w-full" required />
+                                <input type="text" placeholder="First Name" class="input input-bordered w-full" required />
+                                <input type="text" placeholder="Last Name" class="input input-bordered w-full" required />
                             </div>
-                            <input type="email" id="shipping-email" placeholder="Email Address" class="input input-bordered w-full" required />
-                            <input type="tel" id="shipping-phone" placeholder="Phone Number" class="input input-bordered w-full" required />
-                            <input type="text" id="shipping-address-line1" placeholder="Street Address" class="input input-bordered w-full" required />
-                            <input type="text" id="shipping-address-line2" placeholder="Apartment, Suite, etc. (Optional)" class="input input-bordered w-full" />
+                            <input type="email" placeholder="Email Address" class="input input-bordered w-full" required />
+                            <input type="tel" placeholder="Phone Number" class="input input-bordered w-full" required />
+                            <input type="text" placeholder="Street Address" class="input input-bordered w-full" required />
+                            <input type="text" placeholder="Apartment, Suite, etc. (Optional)" class="input input-bordered w-full" />
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <input type="text" id="shipping-city" placeholder="City" class="input input-bordered w-full" required />
-                                <input type="text" id="shipping-state" placeholder="State / Province" class="input input-bordered w-full" required />
-                                <input type="text" id="shipping-zip" placeholder="Postal Code" class="input input-bordered w-full" required />
+                                <input type="text" placeholder="City" class="input input-bordered w-full" required />
+                                <input type="text" placeholder="State / Province" class="input input-bordered w-full" required />
+                                <input type="text" placeholder="Postal Code" class="input input-bordered w-full" required />
                             </div>
-                            <select id="shipping-country" class="select select-bordered w-full" required>
-                                <option disabled selected value="">Select Country</option>
-                                <option value="India">India</option>
-                                <option value="United States">United States</option>
-                                <option value="Canada">Canada</option>
+                            <select class="select select-bordered w-full" required>
+                                <option disabled selected>Select Country</option>
+                                <option>India</option>
+                                <option>United States</option>
+                                <option>Canada</option>
                                 </select>
 
                             <h3 class="text-xl font-semibold mt-8 mb-4">Shipping Method</h3>
@@ -415,14 +419,14 @@
                                     <input type="radio" name="shipping_method" value="standard" class="radio radio-primary" checked />
                                     <div>
                                         <span class="font-semibold">Standard Shipping</span>
-                                        <span class="block text-sm text-gray-500" data-shipping-cost="0.00">5-7 business days - FREE</span>
+                                        <span class="block text-sm text-gray-500">5-7 business days - FREE</span>
                                     </div>
                                 </label>
                                 <label class="flex items-center space-x-3 cursor-pointer p-4 border rounded-lg hover:bg-gray-50">
                                     <input type="radio" name="shipping_method" value="express" class="radio radio-primary" />
                                     <div>
                                         <span class="font-semibold">Express Shipping</span>
-                                        <span class="block text-sm text-gray-500" data-shipping-cost="12.50">1-3 business days - $12.50</span>
+                                        <span class="block text-sm text-gray-500">1-3 business days - $12.50</span>
                                     </div>
                                 </label>
                             </div>
@@ -442,25 +446,25 @@
                             </div>
 
                             <div id="card-payment-section" class="payment-method-section mt-4 space-y-4">
-                                <input type="text" id="card-number" placeholder="Card Number" class="input input-bordered w-full" />
-                                <input type="text" id="card-holder-name" placeholder="Cardholder Name" class="input input-bordered w-full" />
+                                <input type="text" placeholder="Card Number" class="input input-bordered w-full" />
+                                <input type="text" placeholder="Cardholder Name" class="input input-bordered w-full" />
                                 <div class="grid grid-cols-2 gap-4">
-                                    <input type="text" id="card-expiry" placeholder="MM/YY" class="input input-bordered w-full" />
-                                    <input type="text" id="card-cvv" placeholder="CVV" class="input input-bordered w-full" />
+                                    <input type="text" placeholder="MM/YY" class="input input-bordered w-full" />
+                                    <input type="text" placeholder="CVV" class="input input-bordered w-full" />
                                 </div>
                             </div>
 
                             <div id="upi-payment-section" class="payment-method-section hidden mt-4 space-y-4">
-                                <input type="text" id="upi-id" placeholder="Enter UPI ID (e.g., yourname@bank)" class="input input-bordered w-full" />
+                                <input type="text" placeholder="Enter UPI ID (e.g., yourname@bank)" class="input input-bordered w-full" />
                                 <p class="text-sm text-gray-600 text-center">OR</p>
-                                <button type="button" class="btn btn-outline btn-block">Show UPI QR Code</button>
-                                <select id="net-banking-bank" class="select select-bordered w-full">
-                                    <option disabled selected value="">Select Bank for Net Banking</option>
+                                <button class="btn btn-outline btn-block">Show UPI QR Code</button>
+                                <select class="select select-bordered w-full">
+                                    <option disabled selected>Select Bank for Net Banking</option>
                                     <option>State Bank of India</option>
                                     <option>HDFC Bank</option>
                                     <option>ICICI Bank</option>
                                     </select>
-                                <button type="button" class="btn btn-primary w-full">Pay with Net Banking</button>
+                                <button class="btn btn-primary w-full">Pay with Net Banking</button>
                             </div>
 
                             <div id="cod-payment-section" class="payment-method-section hidden mt-4 space-y-4">
@@ -477,22 +481,8 @@
                                 <span>Same as shipping address</span>
                             </label>
                             <div id="billing-address-fields" class="space-y-4 hidden">
-                                <input type="text" id="billing-first-name" placeholder="First Name" class="input input-bordered w-full" />
-                                <input type="text" id="billing-last-name" placeholder="Last Name" class="input input-bordered w-full" />
-                                <input type="text" id="billing-address-line1" placeholder="Street Address" class="input input-bordered w-full" />
-                                <input type="text" id="billing-address-line2" placeholder="Apartment, Suite, etc. (Optional)" class="input input-bordered w-full" />
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <input type="text" id="billing-city" placeholder="City" class="input input-bordered w-full" />
-                                    <input type="text" id="billing-state" placeholder="State / Province" class="input input-bordered w-full" />
-                                    <input type="text" id="billing-zip" placeholder="Postal Code" class="input input-bordered w-full" />
+                                <input type="text" placeholder="Billing Street Address" class="input input-bordered w-full" />
                                 </div>
-                                <select id="billing-country" class="select select-bordered w-full">
-                                    <option disabled selected value="">Select Country</option>
-                                    <option value="India">India</option>
-                                    <option value="United States">United States</option>
-                                    <option value="Canada">Canada</option>
-                                </select>
-                            </div>
 
                             <button type="submit" class="btn btn-primary w-full mt-8">Review Order</button>
                         </form>
@@ -502,25 +492,25 @@
                         <h2 class="text-2xl font-semibold mb-6">3. Review Your Order</h2>
                         <div class="space-y-6">
                             <div class="border p-4 rounded-lg">
-                                <h3 class="font-semibold text-lg mb-2">Contact Information <a href="#" class="text-blue-600 text-sm ml-2 edit-step-link" data-edit-step="shipping">Edit</a></h3>
-                                <p id="review-email">Email: </p>
-                                <p id="review-phone">Phone: </p>
+                                <h3 class="font-semibold text-lg mb-2">Contact Information <a href="#" class="text-blue-600 text-sm ml-2" data-edit-step="shipping">Edit</a></h3>
+                                <p id="review-email">Email: N/A</p>
+                                <p id="review-phone">Phone: N/A</p>
                             </div>
 
                             <div class="border p-4 rounded-lg">
-                                <h3 class="font-semibold text-lg mb-2">Shipping Address <a href="#" class="text-blue-600 text-sm ml-2 edit-step-link" data-edit-step="shipping">Edit</a></h3>
-                                <p id="review-shipping-address"></p>
+                                <h3 class="font-semibold text-lg mb-2">Shipping Address <a href="#" class="text-blue-600 text-sm ml-2" data-edit-step="shipping">Edit</a></h3>
+                                <p id="review-shipping-address">N/A</p>
                             </div>
 
                             <div class="border p-4 rounded-lg">
-                                <h3 class="font-semibold text-lg mb-2">Shipping Method <a href="#" class="text-blue-600 text-sm ml-2 edit-step-link" data-edit-step="shipping">Edit</a></h3>
-                                <p id="review-shipping-method"></p>
+                                <h3 class="font-semibold text-lg mb-2">Shipping Method <a href="#" class="text-blue-600 text-sm ml-2" data-edit-step="shipping">Edit</a></h3>
+                                <p id="review-shipping-method">N/A</p>
                             </div>
 
                             <div class="border p-4 rounded-lg">
-                                <h3 class="font-semibold text-lg mb-2">Payment Method <a href="#" class="text-blue-600 text-sm ml-2 edit-step-link" data-edit-step="payment">Edit</a></h3>
-                                <p id="review-payment-method"></p>
-                                <p id="review-billing-address" class="text-sm text-gray-600"></p>
+                                <h3 class="font-semibold text-lg mb-2">Payment Method <a href="#" class="text-blue-600 text-sm ml-2" data-edit-step="payment">Edit</a></h3>
+                                <p id="review-payment-method">N/A</p>
+                                <p id="review-billing-address" class="text-sm text-gray-600">Billing: N/A</p>
                             </div>
 
                             <h3 class="font-semibold text-lg mb-4">Items in Order</h3>
@@ -534,7 +524,7 @@
                                 </div>
                                 <div class="flex justify-between">
                                     <span>Shipping:</span>
-                                    <span id="review-shipping-cost">$0.00</span>
+                                    <span id="review-shipping-cost">FREE</span>
                                 </div>
                                 <div class="flex justify-between font-bold text-xl">
                                     <span>Grand Total:</span>
@@ -559,21 +549,23 @@
                     <div class="space-y-2">
                         <div class="flex justify-between text-lg font-semibold">
                             <span>Subtotal:</span>
-                            <span id="checkout-sidebar-subtotal">$0.00</span>
+                            <span id="checkout-subtotal">$0.00</span>
                         </div>
                         <div class="flex justify-between text-md">
                             <span>Shipping:</span>
-                            <span id="checkout-sidebar-shipping">$0.00</span>
+                            <span id="checkout-shipping-summary">FREE</span>
                         </div>
                         <div class="flex justify-between text-xl font-bold mt-4">
                             <span>Total:</span>
-                            <span id="checkout-sidebar-grand-total" class="text-blue-600">$0.00</span>
+                            <span id="checkout-grand-total" class="text-blue-600">$0.00</span>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-    </div> <div id="order-confirmation-section" class="page-section hidden">
+    </div>
+
+    <div id="order-confirmation-page" class="main-page-section">
         <main class="max-w-4xl mx-auto py-16 px-4 text-center">
             <div class="bg-white p-8 rounded-lg shadow-xl border border-green-200">
                 <i class="fas fa-check-circle text-green-500 text-6xl mb-6"></i>
@@ -581,29 +573,31 @@
                 <p class="text-lg text-gray-600 mb-8">Your order has been placed successfully and is being processed.</p>
 
                 <div class="bg-green-50 text-green-800 p-4 rounded-lg mb-8">
-                    <h2 class="text-2xl font-semibold mb-2">Order Number: <span class="text-green-700" id="final-order-number">#SHOPEASE_XYZ123</span></h2>
+                    <h2 class="text-2xl font-semibold mb-2">Order Number: <span class="text-green-700" id="order-confirm-number">#SHOPEASE12345</span></h2>
                     <p class="text-md">You will receive an email confirmation shortly with tracking details.</p>
                     <p class="text-md mt-2">Estimated Delivery: <span class="font-semibold">5-7 business days</span></p>
                 </div>
 
                 <div class="mb-8 text-left border-t pt-4">
                     <h3 class="text-xl font-semibold mb-4">Order Summary</h3>
-                    <div id="final-order-summary-items" class="space-y-2">
+                    <div id="order-confirm-items" class="space-y-2">
                         </div>
-                    <div class="flex justify-between font-semibold border-t pt-2 mt-4">
+                    <div class="flex justify-between font-semibold border-t pt-2">
                         <span>Total:</span>
-                        <span id="final-order-total">$0.00</span>
+                        <span id="order-confirm-total">$0.00</span>
                     </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#" id="continue-shopping-btn" class="btn btn-primary btn-lg flex-1">Continue Shopping</a>
+                    <button class="btn btn-primary btn-lg flex-1" id="continue-shopping-btn">Continue Shopping</button>
                     <a href="#" class="btn btn-outline btn-lg flex-1">View Order Details</a> </div>
 
                 <p class="text-gray-500 text-sm mt-8">Need help? Visit our <a href="#" class="text-blue-600 hover:underline">FAQs</a> or <a href="#" class="text-blue-600 hover:underline">Contact Us</a>.</p>
             </div>
         </main>
-    </div> <footer class="bg-gray-800 text-gray-400 py-10 px-4" id="footer">
+    </div>
+
+    <footer class="bg-gray-800 text-gray-400 py-10 px-4" id="footer">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <h3 class="text-xl font-semibold text-white mb-4">ShopEase</h3>
@@ -617,11 +611,11 @@
             <div>
                 <h3 class="text-xl font-semibold text-white mb-4">Quick Links</h3>
                 <ul class="space-y-2">
-                    <li><a href="#home-section" class="hover:text-white transition nav-link" data-target-section="home-section">Home</a></li>
-                    <li><a href="#categories" class="hover:text-white transition nav-link" data-target-section="home-section">Categories</a></li>
-                    <li><a href="#shop" class="hover:text-white transition nav-link" data-target-section="home-section">Features</a></li>
-                    <li><a href="#testimonials" class="hover:text-white transition nav-link" data-target-section="home-section">Testimonials</a></li>
-                    <li><a href="#footer" class="hover:text-white transition nav-link" data-target-section="home-section">Contact</a></li>
+                    <li><a href="#" data-page="home-page" class="nav-link hover:text-white transition">Home</a></li>
+                    <li><a href="#" data-page="home-page" data-scroll="#categories" class="nav-link hover:text-white transition">Categories</a></li>
+                    <li><a href="#" data-page="home-page" data-scroll="#shop" class="nav-link hover:text-white transition">Features</a></li>
+                    <li><a href="#" data-page="home-page" data-scroll="#testimonials" class="nav-link hover:text-white transition">Testimonials</a></li>
+                    <li><a href="#" data-page="home-page" data-scroll="#footer" class="nav-link hover:text-white transition">Contact</a></li>
                 </ul>
             </div>
 
@@ -675,24 +669,55 @@
 
     <div id="cart-overlay" class="cart-overlay"></div>
 
-    <div id="cookie-consent-banner" class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 flex flex-col sm:flex-row items-center justify-between z-[10000]">
-        <p class="text-sm text-center sm:text-left mb-2 sm:mb-0">
-            This website uses cookies to ensure you get the best experience on our website.
-            <a href="#" class="text-blue-400 hover:underline ml-1">Learn more</a>
-        </p>
-        <div class="flex space-x-2">
-            <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">Accept</button>
-            <button id="decline-cookies" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm">Decline</button>
-        </div>
-    </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- General Page & Cart Elements ---
-            const mainShopSection = document.getElementById('home-section');
-            const checkoutSection = document.getElementById('checkout-section');
-            const orderConfirmationSection = document.getElementById('order-confirmation-section');
+            // --- Global Page Management ---
+            const homePage = document.getElementById('home-page');
+            const checkoutPage = document.getElementById('checkout-page');
+            const orderConfirmationPage = document.getElementById('order-confirmation-page');
+            const allPages = document.querySelectorAll('.main-page-section');
+            const navLinks = document.querySelectorAll('.nav-link'); // Select all navigation links
+            
+            // Function to show a specific page and hide others
+            function showPage(pageId) {
+                allPages.forEach(page => {
+                    page.classList.remove('active-page');
+                });
+                document.getElementById(pageId).classList.add('active-page');
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top when changing page
+                // Special handling for checkout/confirmation: clear cart or update summary
+                if (pageId === 'checkout-page') {
+                    updateOrderSummary(); // Make sure checkout summary is fresh
+                    showCheckoutStep('shipping'); // Start checkout from first step
+                } else if (pageId === 'order-confirmation-page') {
+                    renderOrderConfirmation(); // Populate confirmation details
+                }
+            }
 
+            // Event listeners for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetPage = link.dataset.page;
+                    const scrollTarget = link.dataset.scroll;
+
+                    if (targetPage) {
+                        showPage(targetPage);
+                        if (scrollTarget && targetPage === 'home-page') {
+                            // If on home page, scroll to specific section
+                            setTimeout(() => { // Small delay to allow page render
+                                const section = document.querySelector(scrollTarget);
+                                if (section) {
+                                    section.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }, 50);
+                        }
+                    }
+                });
+            });
+
+
+            // --- Original Home Page Functionality ---
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             const cartCountDesktopSpan = document.getElementById('cart-count-desktop');
@@ -707,45 +732,17 @@
             const cartTotalSpan = document.getElementById('cart-total');
             const clearCartBtn = document.getElementById('clear-cart');
             const emptyCartMessage = document.getElementById('empty-cart-message');
-            const checkoutButton = document.getElementById('checkout-button');
-
             const filterButtons = document.querySelectorAll('.filter-btn');
             const productCards = document.querySelectorAll('.product-card');
 
-            // Cookie Consent elements
-            const cookieConsentBanner = document.getElementById('cookie-consent-banner');
-            const acceptCookiesBtn = document.getElementById('accept-cookies');
-            const declineCookiesBtn = document.getElementById('decline-cookies');
+            // Toggle mobile menu
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
 
             // Initialize cart from localStorage
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            // --- Navigation Functions (for SPA-like behavior) ---
-            function showPage(pageId) {
-                mainShopSection.classList.add('hidden');
-                checkoutSection.classList.add('hidden');
-                orderConfirmationSection.classList.add('hidden');
-
-                if (pageId === 'home') {
-                    mainShopSection.classList.remove('hidden');
-                    // Scroll to top of the main shop section if needed
-                    mainShopSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else if (pageId === 'checkout') {
-                    checkoutSection.classList.remove('hidden');
-                    // Ensure checkout starts at step 1
-                    showCheckoutStep('shipping');
-                    updateCheckoutOrderSummary(); // Populate sidebar and initial review
-                    checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-                } else if (pageId === 'order-confirmation') {
-                    orderConfirmationSection.classList.remove('hidden');
-                    populateOrderConfirmation();
-                    orderConfirmationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-                closeCartSidebar(); // Close cart when navigating away
-            }
-
-            // --- Core Cart Functions ---
             function updateCartCount() {
                 const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
                 if (totalItems > 0) {
@@ -815,7 +812,7 @@
                 localStorage.setItem('cart', JSON.stringify(cart));
                 updateCartCount();
                 renderCartItems(); // Update cart display immediately
-                openCartSidebar(); // Optionally, open the cart sidebar when an item is added
+                openCartSidebar(); // Open the cart sidebar when an item is added
             }
 
             function updateQuantity(productId, action) {
@@ -832,6 +829,7 @@
                     localStorage.setItem('cart', JSON.stringify(cart));
                     updateCartCount();
                     renderCartItems();
+                    updateOrderSummary(); // Update checkout summary if needed
                 }
             }
 
@@ -840,6 +838,7 @@
                 localStorage.setItem('cart', JSON.stringify(cart));
                 updateCartCount();
                 renderCartItems();
+                updateOrderSummary(); // Update checkout summary if needed
             }
 
             function clearCart() {
@@ -848,6 +847,7 @@
                 updateCartCount();
                 renderCartItems();
                 alert('Cart has been cleared!');
+                updateOrderSummary(); // Update checkout summary if needed
             }
 
             function openCartSidebar() {
@@ -861,7 +861,6 @@
                 cartOverlay.classList.remove('open');
             }
 
-            // --- Product Filtering ---
             function filterProducts(category) {
                 productCards.forEach(card => {
                     const productCategory = card.dataset.category;
@@ -873,254 +872,7 @@
                 });
             }
 
-            // --- LocalStorage for Last Visited Section (adjusted for SPA) ---
-            const sections = document.querySelectorAll('#home-section section[id]'); // Only within home section
-            const navLinks = document.querySelectorAll('nav a[href^="#"]'); 
-
-            function saveLastVisitedSection() {
-                if (mainShopSection.classList.contains('hidden')) return; // Only save if on home page
-
-                let lastSection = '';
-                for (let i = sections.length - 1; i >= 0; i--) {
-                    const section = sections[i];
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-                        lastSection = section.id;
-                        break;
-                    }
-                }
-                if (lastSection) {
-                    localStorage.setItem('lastVisitedSection', lastSection);
-                }
-            }
-
-            function navigateToLastVisitedSection() {
-                const lastSection = localStorage.getItem('lastVisitedSection');
-                if (lastSection && mainShopSection.classList.contains('hidden')) { // Only apply if we load into the shop page
-                    const targetSection = document.getElementById(lastSection);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            }
-
-            // --- Cookie Consent Implementation ---
-            const COOKIE_CONSENT_KEY = 'cookieConsentAccepted';
-
-            function showCookieConsent() {
-                if (localStorage.getItem(COOKIE_CONSENT_KEY) === null) {
-                    cookieConsentBanner.classList.remove('hidden');
-                }
-            }
-
-            function hideCookieConsent() {
-                cookieConsentBanner.classList.add('hidden');
-            }
-
-            // --- Checkout Logic (Integrated from previous checkout.html) ---
-            const checkoutSteps = {
-                shipping: { element: document.getElementById('shipping-step'), indicator: document.getElementById('step-shipping') },
-                payment: { element: document.getElementById('payment-step'), indicator: document.getElementById('step-payment') },
-                review: { element: document.getElementById('review-step'), indicator: document.getElementById('step-review') }
-            };
-
-            const shippingForm = document.getElementById('shipping-form');
-            const paymentForm = document.getElementById('payment-form');
-            const placeOrderBtn = document.getElementById('place-order-btn');
-            const sameAsShippingCheckbox = document.getElementById('same-as-shipping');
-            const billingAddressFields = document.getElementById('billing-address-fields');
-            const paymentTabs = document.querySelectorAll('.tabs a.tab');
-            const paymentSections = document.querySelectorAll('.payment-method-section');
-            const termsCheckbox = document.getElementById('terms-checkbox');
-
-            const checkoutOrderSummaryItems = document.getElementById('checkout-order-summary-items');
-            const checkoutSidebarSubtotal = document.getElementById('checkout-sidebar-subtotal');
-            const checkoutSidebarShipping = document.getElementById('checkout-sidebar-shipping');
-            const checkoutSidebarGrandTotal = document.getElementById('checkout-sidebar-grand-total');
-
-            let checkoutData = { // To store data collected during checkout
-                shipping: {},
-                payment: {},
-                totals: {
-                    subtotal: 0,
-                    shippingCost: 0,
-                    grandTotal: 0
-                }
-            };
-            
-            function showCheckoutStep(stepName) {
-                Object.values(checkoutSteps).forEach(step => {
-                    step.element.classList.add('hidden');
-                    step.indicator.classList.remove('step-primary');
-                });
-                checkoutSteps[stepName].element.classList.remove('hidden');
-                checkoutSteps[stepName].indicator.classList.add('step-primary');
-                // Ensure page scrolls to top of current step
-                checkoutSteps[stepName].element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-
-            function updateCheckoutOrderSummary() {
-                checkoutOrderSummaryItems.innerHTML = '';
-                let subtotal = 0;
-                let shippingCost = parseFloat(document.querySelector('input[name="shipping_method"]:checked')?.dataset.shippingCost || '0');
-
-                if (cart.length === 0) {
-                    checkoutOrderSummaryItems.innerHTML = '<p class="text-center text-gray-500">Your cart is empty.</p>';
-                    subtotal = 0;
-                } else {
-                    cart.forEach(item => {
-                        const itemDiv = document.createElement('div');
-                        itemDiv.classList.add('flex', 'justify-between', 'items-center');
-                        itemDiv.innerHTML = `
-                            <span class="text-sm text-gray-700">${item.name} (x${item.quantity})</span>
-                            <span class="text-sm text-gray-700">$${(item.price * item.quantity).toFixed(2)}</span>
-                        `;
-                        checkoutOrderSummaryItems.appendChild(itemDiv);
-                        subtotal += item.price * item.quantity;
-                    });
-                }
-                
-                const grandTotal = subtotal + shippingCost;
-
-                checkoutData.totals.subtotal = subtotal;
-                checkoutData.totals.shippingCost = shippingCost;
-                checkoutData.totals.grandTotal = grandTotal;
-
-                checkoutSidebarSubtotal.textContent = `$${subtotal.toFixed(2)}`;
-                checkoutSidebarShipping.textContent = shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`;
-                checkoutSidebarGrandTotal.textContent = `$${grandTotal.toFixed(2)}`;
-
-                // Update review step totals
-                document.getElementById('review-subtotal').textContent = `$${subtotal.toFixed(2)}`;
-                document.getElementById('review-shipping-cost').textContent = shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`;
-                document.getElementById('review-grand-total').textContent = `$${grandTotal.toFixed(2)}`;
-
-                // Update review order items
-                const reviewOrderItems = document.getElementById('review-order-items');
-                reviewOrderItems.innerHTML = '';
-                cart.forEach(item => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.classList.add('flex', 'justify-between', 'items-center');
-                    itemDiv.innerHTML = `
-                        <span>${item.name} (x${item.quantity})</span>
-                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
-                    `;
-                    reviewOrderItems.appendChild(itemDiv);
-                });
-            }
-
-            // Function to gather shipping form data
-            function getShippingFormData() {
-                return {
-                    firstName: document.getElementById('shipping-first-name').value,
-                    lastName: document.getElementById('shipping-last-name').value,
-                    email: document.getElementById('shipping-email').value,
-                    phone: document.getElementById('shipping-phone').value,
-                    addressLine1: document.getElementById('shipping-address-line1').value,
-                    addressLine2: document.getElementById('shipping-address-line2').value,
-                    city: document.getElementById('shipping-city').value,
-                    state: document.getElementById('shipping-state').value,
-                    zip: document.getElementById('shipping-zip').value,
-                    country: document.getElementById('shipping-country').value,
-                    shippingMethod: document.querySelector('input[name="shipping_method"]:checked').value,
-                    shippingMethodText: document.querySelector('input[name="shipping_method"]:checked + div > span.font-semibold').textContent,
-                    shippingCostText: document.querySelector('input[name="shipping_method"]:checked + div > span.text-sm').textContent
-                };
-            }
-
-            // Function to gather payment form data (simple placeholder)
-            function getPaymentFormData() {
-                const activePaymentTab = document.querySelector('.tabs a.tab-active').dataset.paymentTab;
-                let paymentMethodDetails = {};
-                if (activePaymentTab === 'card') {
-                    paymentMethodDetails = {
-                        type: 'Credit/Debit Card',
-                        last4: document.getElementById('card-number').value.slice(-4) || '****' // Basic, insecure
-                    };
-                } else if (activePaymentTab === 'upi') {
-                    paymentMethodDetails = {
-                        type: 'UPI / Net Banking',
-                        upiId: document.getElementById('upi-id').value
-                    };
-                } else if (activePaymentTab === 'cod') {
-                    paymentMethodDetails = {
-                        type: 'Cash on Delivery'
-                    };
-                }
-                return {
-                    method: activePaymentTab,
-                    details: paymentMethodDetails,
-                    billingSameAsShipping: sameAsShippingCheckbox.checked,
-                    billingAddress: sameAsShippingCheckbox.checked ? checkoutData.shipping : {
-                        firstName: document.getElementById('billing-first-name').value,
-                        lastName: document.getElementById('billing-last-name').value,
-                        addressLine1: document.getElementById('billing-address-line1').value,
-                        addressLine2: document.getElementById('billing-address-line2').value,
-                        city: document.getElementById('billing-city').value,
-                        state: document.getElementById('billing-state').value,
-                        zip: document.getElementById('billing-zip').value,
-                        country: document.getElementById('billing-country').value
-                    }
-                };
-            }
-
-            // Populate review step with data
-            function populateReviewStep() {
-                // Populate contact info
-                document.getElementById('review-email').textContent = `Email: ${checkoutData.shipping.email}`;
-                document.getElementById('review-phone').textContent = `Phone: ${checkoutData.shipping.phone}`;
-                
-                // Populate shipping address
-                const s = checkoutData.shipping;
-                const shippingAddressHtml = `${s.firstName} ${s.lastName}<br>${s.addressLine1}${s.addressLine2 ? ', ' + s.addressLine2 : ''}<br>${s.city}, ${s.state} ${s.zip}<br>${s.country}`;
-                document.getElementById('review-shipping-address').innerHTML = shippingAddressHtml;
-
-                // Populate shipping method
-                document.getElementById('review-shipping-method').textContent = `${s.shippingMethodText} - ${s.shippingCostText}`;
-
-                // Populate payment method
-                const p = checkoutData.payment;
-                let paymentMethodText = p.details.type;
-                if (p.details.last4) paymentMethodText += ` ending in ****${p.details.last4}`;
-                else if (p.details.upiId) paymentMethodText += ` (${p.details.upiId})`;
-                document.getElementById('review-payment-method').textContent = paymentMethodText;
-
-                // Populate billing address
-                if (p.billingSameAsShipping) {
-                    document.getElementById('review-billing-address').textContent = 'Billing: Same as shipping address';
-                } else {
-                    const b = p.billingAddress;
-                    const billingAddressHtml = `Billing: ${b.firstName} ${b.lastName}<br>${b.addressLine1}${b.addressLine2 ? ', ' + b.addressLine2 : ''}<br>${b.city}, ${b.state} ${b.zip}<br>${b.country}`;
-                    document.getElementById('review-billing-address').innerHTML = billingAddressHtml;
-                }
-            }
-            
-            // Function to populate order confirmation page
-            function populateOrderConfirmation() {
-                document.getElementById('final-order-number').textContent = `#SHOPEASE${Math.floor(Math.random() * 90000) + 10000}`; // Generate a random order number
-
-                const finalOrderItemsContainer = document.getElementById('final-order-summary-items');
-                finalOrderItemsContainer.innerHTML = '';
-                cart.forEach(item => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.classList.add('flex', 'justify-between');
-                    itemDiv.innerHTML = `
-                        <span>${item.name} (x${item.quantity})</span>
-                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
-                    `;
-                    finalOrderItemsContainer.appendChild(itemDiv);
-                });
-                document.getElementById('final-order-total').textContent = `$${checkoutData.totals.grandTotal.toFixed(2)}`;
-            }
-
-            // --- Event Listeners ---
-
-            // Toggle mobile menu
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            // Event Listeners for Add to Cart Buttons
+            // Event Listeners for Add to Cart Buttons (on home page)
             addToCartButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     const productId = event.target.dataset.productId;
@@ -1130,7 +882,7 @@
                 });
             });
 
-            // Event Listeners for Cart Sidebar
+            // Event Listeners for Cart Sidebar buttons
             openCartDesktopBtn.addEventListener('click', openCartSidebar);
             openCartMobileBtn.addEventListener('click', openCartSidebar);
             closeCartBtn.addEventListener('click', closeCartSidebar);
@@ -1149,16 +901,7 @@
                 }
             });
 
-            // Event Listener for Checkout button in cart
-            checkoutButton.addEventListener('click', () => {
-                if (cart.length === 0) {
-                    alert('Your cart is empty. Please add items before checking out.');
-                    return;
-                }
-                showPage('checkout');
-            });
-
-            // Event Listeners for Category Filter Buttons
+            // Event Listeners for Category Filter Buttons (on home page)
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     // Remove active class from all buttons
@@ -1178,51 +921,232 @@
                 });
             });
 
-            // Event Listeners for top navigation links to switch pages (Home, Categories, etc.)
-            // We'll target nav links within the header that point to IDs within the home-section
-            document.querySelectorAll('nav a.nav-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const targetSectionId = this.dataset.targetSection;
-                    if (targetSectionId) { // Check if it's a SPA navigation link
-                        e.preventDefault(); // Prevent default hash navigation
-                        showPage(targetSectionId === 'home-section' ? 'home' : targetSectionId); // Map home-section to 'home' page
-
-                        // If it's a section within home-section, scroll to it
-                        if (targetSectionId === 'home-section' && this.getAttribute('href').startsWith('#')) {
-                            const internalTargetId = this.getAttribute('href').substring(1);
-                            const internalTargetElement = document.getElementById(internalTargetId);
-                            if (internalTargetElement) {
-                                internalTargetElement.scrollIntoView({ behavior: 'smooth' });
-                            }
+            // Category "Shop Now" buttons on home page sections
+            document.querySelectorAll('section#categories button[data-filter]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const category = e.target.dataset.filter;
+                    showPage('home-page'); // Ensure we are on home page
+                    setTimeout(() => {
+                        const shopSection = document.getElementById('shop');
+                        if (shopSection) {
+                            shopSection.scrollIntoView({ behavior: 'smooth' });
                         }
-                    }
+                        // Trigger the filter button click for the category
+                        filterButtons.forEach(btn => {
+                            if (btn.dataset.category === category) {
+                                btn.click(); // Simulate click on the filter button
+                            }
+                        });
+                    }, 100); // Small delay to allow page render/scroll
                 });
+            });
+
+
+            // --- LocalStorage for Last Visited Section (Home page only) ---
+            const sections = document.querySelectorAll('#home-page section[id]'); // Only sections within home-page
+            
+            function saveLastVisitedSection() {
+                // Only save if currently on the home page
+                if (!homePage.classList.contains('active-page')) return;
+
+                let lastSection = '';
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const section = sections[i];
+                    const rect = section.getBoundingClientRect();
+                    // Check if the section is at least partially visible in the viewport
+                    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                        lastSection = section.id;
+                        break;
+                    }
+                }
+                if (lastSection) {
+                    localStorage.setItem('lastVisitedSection', lastSection);
+                }
+            }
+
+            function navigateToLastVisitedSection() {
+                const lastSection = localStorage.getItem('lastVisitedSection');
+                if (lastSection) {
+                    const targetSection = document.getElementById(lastSection);
+                    if (targetSection && homePage.classList.contains('active-page')) { // Only scroll if on home page
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+
+            // Save last visited section on scroll
+            window.addEventListener('scroll', saveLastVisitedSection);
+
+
+            // --- Checkout Page Functionality ---
+            const checkoutButton = document.getElementById('checkout-button'); // Get the checkout button from cart sidebar
+
+            const steps = {
+                shipping: { element: document.getElementById('shipping-step'), indicator: document.getElementById('step-shipping') },
+                payment: { element: document.getElementById('payment-step'), indicator: document.getElementById('step-payment') },
+                review: { element: document.getElementById('review-step'), indicator: document.getElementById('step-review') }
+            };
+
+            const shippingForm = document.getElementById('shipping-form');
+            const paymentForm = document.getElementById('payment-form');
+            const placeOrderBtn = document.getElementById('place-order-btn');
+            const termsCheckbox = document.getElementById('terms-checkbox');
+            const sameAsShippingCheckbox = document.getElementById('same-as-shipping');
+            const billingAddressFields = document.getElementById('billing-address-fields');
+            const paymentTabs = document.querySelectorAll('.tabs a.tab');
+            const paymentSections = document.querySelectorAll('.payment-method-section');
+            const editStepLinks = document.querySelectorAll('[data-edit-step]');
+
+            let currentCheckoutStep = 'shipping'; // Tracks current step within checkout
+
+            function showCheckoutStep(stepName) {
+                Object.values(steps).forEach(step => {
+                    step.element.classList.add('hidden');
+                    step.indicator.classList.remove('step-primary');
+                });
+                steps[stepName].element.classList.remove('hidden');
+                steps[stepName].indicator.classList.add('step-primary');
+                currentCheckoutStep = stepName;
+                window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top of checkout section
+            }
+
+            function updateOrderSummary() {
+                const summaryItemsContainer = document.getElementById('checkout-order-summary-items');
+                const reviewOrderItemsContainer = document.getElementById('review-order-items');
+                summaryItemsContainer.innerHTML = '';
+                reviewOrderItemsContainer.innerHTML = ''; // Clear for review as well
+                let subtotal = 0;
+
+                if (cart.length === 0) {
+                    summaryItemsContainer.innerHTML = '<p class="text-center text-gray-500">Your cart is empty.</p>';
+                    reviewOrderItemsContainer.innerHTML = '<p class="text-center text-gray-500">Your cart is empty.</p>';
+                } else {
+                    cart.forEach(item => {
+                        const itemHtml = `
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-700">${item.name} (x${item.quantity})</span>
+                                <span class="text-sm text-gray-700">$${(item.price * item.quantity).toFixed(2)}</span>
+                            </div>
+                        `;
+                        summaryItemsContainer.insertAdjacentHTML('beforeend', itemHtml);
+                        reviewOrderItemsContainer.insertAdjacentHTML('beforeend', itemHtml);
+                        subtotal += item.price * item.quantity;
+                    });
+                }
+                
+                document.getElementById('checkout-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+                document.getElementById('review-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+
+                // Placeholder for shipping cost logic (this would need actual calculation)
+                let shippingCost = 0; 
+                const selectedShippingRadio = shippingForm.querySelector('input[name="shipping_method"]:checked');
+                if (selectedShippingRadio && selectedShippingRadio.value === 'express') {
+                    shippingCost = 12.50; // Example express shipping cost
+                }
+                
+                document.getElementById('checkout-shipping-summary').textContent = shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`;
+                document.getElementById('review-shipping-cost').textContent = shippingCost === 0 ? 'FREE' : `$${shippingCost.toFixed(2)}`;
+
+                const grandTotal = subtotal + shippingCost;
+                document.getElementById('checkout-grand-total').textContent = `$${grandTotal.toFixed(2)}`;
+                document.getElementById('review-grand-total').textContent = `$${grandTotal.toFixed(2)}`;
+            }
+
+            // Event Listener for "Checkout" button in Cart Sidebar
+            checkoutButton.addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert("Your cart is empty. Please add items before checking out.");
+                    return;
+                }
+                closeCartSidebar(); // Close the cart sidebar
+                showPage('checkout-page'); // Navigate to the checkout page
+                showCheckoutStep('shipping'); // Ensure it starts at shipping step
+                updateOrderSummary(); // Initial summary update
             });
 
 
             // Event Listeners for Checkout Forms
             shippingForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                checkoutData.shipping = getShippingFormData();
-                updateCheckoutOrderSummary(); // Update summary with chosen shipping cost
+                // Perform client-side validation here
+                // Store shipping data temporarily (e.g., in sessionStorage or a JS object)
+                
+                // Populate review fields immediately
+                document.getElementById('review-email').textContent = `Email: ${shippingForm.querySelector('input[type="email"]').value}`;
+                document.getElementById('review-phone').textContent = `Phone: ${shippingForm.querySelector('input[type="tel"]').value}`;
+                
+                const firstName = shippingForm.children[0].value;
+                const lastName = shippingForm.children[1].value;
+                const streetAddress = shippingForm.children[4].value;
+                const aptSuite = shippingForm.children[5].value;
+                const city = shippingForm.children[6].children[0].value;
+                const state = shippingForm.children[6].children[1].value;
+                const postalCode = shippingForm.children[6].children[2].value;
+                const country = shippingForm.children[7].value;
+                
+                const fullAddress = `${firstName} ${lastName}<br>${streetAddress}${aptSuite ? ', ' + aptSuite : ''}<br>${city}, ${state} ${postalCode}<br>${country}`;
+                document.getElementById('review-shipping-address').innerHTML = fullAddress;
+
+                const selectedShippingMethodElement = shippingForm.querySelector('input[name="shipping_method"]:checked + div > span:first-child');
+                const selectedShippingCostElement = shippingForm.querySelector('input[name="shipping_method"]:checked + div > span.text-sm');
+                const selectedShippingMethod = selectedShippingMethodElement ? selectedShippingMethodElement.textContent : 'N/A';
+                const selectedShippingCost = selectedShippingCostElement ? selectedShippingCostElement.textContent : 'N/A';
+                document.getElementById('review-shipping-method').textContent = `${selectedShippingMethod} - ${selectedShippingCost}`;
+
+                updateOrderSummary(); // Update total with shipping cost
                 showCheckoutStep('payment');
             });
 
-            // Listen for changes in shipping method to update total dynamically
-            document.querySelectorAll('input[name="shipping_method"]').forEach(radio => {
-                radio.addEventListener('change', updateCheckoutOrderSummary);
-            });
-
-
             paymentForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                checkoutData.payment = getPaymentFormData();
-                populateReviewStep(); // Populate review step with all collected data
+                // Perform client-side validation for payment info
+                // Store payment data temporarily (e.g., in sessionStorage)
+
+                const activePaymentTab = document.querySelector('.tabs a.tab-active').dataset.paymentTab;
+                let paymentMethodText = '';
+                if (activePaymentTab === 'card') {
+                    const cardNumber = paymentForm.querySelector('#card-payment-section input[type="text"]').value;
+                    paymentMethodText = `Credit Card ending in ****${cardNumber.slice(-4)}`;
+                } else if (activePaymentTab === 'upi') {
+                    paymentMethodText = 'UPI / Net Banking';
+                } else if (activePaymentTab === 'cod') {
+                    paymentMethodText = 'Cash on Delivery';
+                }
+                document.getElementById('review-payment-method').textContent = paymentMethodText;
+
+                if (sameAsShippingCheckbox.checked) {
+                    document.getElementById('review-billing-address').textContent = 'Billing: Same as shipping address';
+                } else {
+                    // In a real app, you'd populate this from the billingAddressFields
+                    document.getElementById('review-billing-address').textContent = 'Billing: [Separate address entered]'; 
+                }
+
                 showCheckoutStep('review');
             });
 
+            placeOrderBtn.addEventListener('click', () => {
+                // Final validation (e.g., terms and conditions checkbox)
+                if (!termsCheckbox.checked) {
+                    alert('Please agree to the Terms & Conditions and Privacy Policy to place your order.');
+                    return;
+                }
+
+                // Simulate order processing (e.g., sending data to a server)
+                // In a real application, you'd send all gathered shipping, payment, and cart data to a backend.
+                alert('Placing your order...');
+                
+                // Clear cart after successful order
+                localStorage.removeItem('cart');
+                cart = []; // Reset local cart variable
+                updateCartCount(); // Update cart count to zero
+
+                // Redirect to confirmation page (within the same index.html)
+                showPage('order-confirmation-page');
+            });
+
             // "Edit" links for review step
-            document.querySelectorAll('.edit-step-link').forEach(link => {
+            editStepLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     showCheckoutStep(e.target.dataset.editStep);
@@ -1252,47 +1176,58 @@
                 });
             });
 
-            // Place Order Button
-            placeOrderBtn.addEventListener('click', () => {
-                if (!termsCheckbox.checked) {
-                    alert('Please agree to the Terms & Conditions and Privacy Policy.');
-                    return;
+            // --- Order Confirmation Page Functionality ---
+            const continueShoppingBtn = document.getElementById('continue-shopping-btn');
+            const orderConfirmNumber = document.getElementById('order-confirm-number');
+            const orderConfirmItems = document.getElementById('order-confirm-items');
+            const orderConfirmTotal = document.getElementById('order-confirm-total');
+
+            function renderOrderConfirmation() {
+                // This would ideally fetch actual order details from a server based on the order ID.
+                // For this example, we'll use a placeholder order number and show the cart as it was *before* clearing.
+                // In a real app, cart would be passed to backend, backend would return real order details.
+                const lastOrderCart = JSON.parse(localStorage.getItem('last_placed_order_cart')) || []; // Simulate last order
+
+                orderConfirmNumber.textContent = `#SHOPEASE${Math.floor(Math.random() * 100000) + 10000}`; // Generate a random order number
+                
+                orderConfirmItems.innerHTML = '';
+                let total = 0;
+
+                if (lastOrderCart.length === 0) {
+                    orderConfirmItems.innerHTML = '<p class="text-center text-gray-500">No items found for this order.</p>';
+                } else {
+                    lastOrderCart.forEach(item => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.classList.add('flex', 'justify-between');
+                        itemDiv.innerHTML = `<span>${item.name} (x${item.quantity})</span><span>$${(item.price * item.quantity).toFixed(2)}</span>`;
+                        orderConfirmItems.appendChild(itemDiv);
+                        total += item.price * item.quantity;
+                    });
                 }
+                orderConfirmTotal.textContent = `$${total.toFixed(2)}`;
 
-                // Simulate order processing (e.g., sending data to a server)
-                console.log('Order Data:', {
-                    cart: cart,
-                    shipping: checkoutData.shipping,
-                    payment: checkoutData.payment,
-                    totals: checkoutData.totals
-                });
+                // IMPORTANT: If you want to show the exact items from the *just placed* order,
+                // you would save the `cart` array to `sessionStorage` or another `localStorage` key
+                // *before* clearing it, and then retrieve it here.
+                // Example: localStorage.setItem('last_placed_order_cart', JSON.stringify(oldCart));
+                // For now, I'm just leaving `last_placed_order_cart` as a conceptual reminder.
+            }
 
-                // Clear cart after successful order
-                cart = []; // Empty the cart array
-                localStorage.removeItem('cart'); // Clear from localStorage
-                updateCartCount(); // Update cart icons
-                renderCartItems(); // Clear cart sidebar display
-
-                // Transition to order confirmation page
-                showPage('order-confirmation');
-            });
-
-            // Continue Shopping from Order Confirmation
-            document.getElementById('continue-shopping-btn').addEventListener('click', (e) => {
-                e.preventDefault();
-                showPage('home');
-                // Optionally scroll to top of home page
-                window.scrollTo(0, 0);
+            continueShoppingBtn.addEventListener('click', () => {
+                showPage('home-page');
+                localStorage.removeItem('lastVisitedSection'); // Clear last visited section for a fresh start on home
             });
 
 
-            // Initial calls on page load
+            // --- Initializations on Load ---
             updateCartCount();
-            renderCartItems();
-            filterProducts('all'); // Initially show all products
-            showCookieConsent();
-            showPage('home'); // Ensure home page is shown on initial load
-            setTimeout(navigateToLastVisitedSection, 100); // Navigate to last visited section on home page if applicable
+            // Initially show home page
+            showPage('home-page');
+            // Navigate to last visited section on home page load (after home-page is shown)
+            setTimeout(navigateToLastVisitedSection, 150); // Slight delay after page transition
+
+            // Initially show all products on the shop section
+            filterProducts('all');
         });
     </script>
 
